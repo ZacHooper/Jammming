@@ -35,6 +35,10 @@
     color: #fff;
     font-weight: 500;
   }
+
+  .Playlist-save:focus {
+    outline: none;
+  }
   
   .Playlist-save:hover {
     background-color: rgba(108, 65, 233, .7);

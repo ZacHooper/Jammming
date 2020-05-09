@@ -64,16 +64,32 @@ const App = () => {
         setPlaylistTracks(filterTrackList);
     }
     
+    const updatePlaylistName = (name) => {
+        setPlaylistName(name);
+    }
+
+    //beginning of save playlist functionanilty
+    const savePlaylist = () => {
+        //This should create an array of track URI's
+        return playlistTracks.map(track => track.id);
+    }
+
+    const search = (search) => {
+        console.log(search);
+    }
+
     return (
         <div>
             <h1>Ja<span className="highlight">mmm</span>ing</h1>
             <div className="App">
-                <SearchBar />
+                <SearchBar onSearch={search}/>
                 <div className="App-playlist">
                     <SearchResults searchResults={searchResults} onAdd={addTrack}/>
                     <Playlist playlistTracks={playlistTracks} 
                               playlistName={playlistName}
-                              onRemove={removeTrack}/>
+                              onRemove={removeTrack}
+                              onNameChange={updatePlaylistName}
+                              onSave={savePlaylist}/>
                 </div>
             </div>
         </div>
