@@ -3,60 +3,23 @@ import './App.css';
 import SearchBar from '../SearchBar/SearchBar';
 import SearchResults from '../SearchResults/SearchResults';
 import Playlist from '../Playlist/Playlist';
+import Spotify from '../../util/Spotify';
 
-const searchTracks = [
-    {
-        id: '1',
-        name: 'Goodnight',
-        artist: 'Nick Murphy',
-        album: 'Goodnight - Single'
-    },
-    {
-        id: '2',
-        name: 'The Difference - extended',
-        artist: 'Flume, Toro y Moi',
-        album: 'The Difference (Extended)'
-    },
-    {
-        id: '3',
-        name: 'Elixir',
-        artist: 'Tourist',
-        album: 'Wild'
-    }
-];
-
-const pTracks = [
-    {
-        id: '4',
-        name: 'Suburbia',
-        artist: 'Press Club',
-        album: 'Late Teens'
-    },
-    {
-        id: '5',
-        name: 'Dove Sei - Original Deep Mix',
-        artist: 'Lovebirds',
-        album: 'Dove Sei'
-    },
-    {
-        id: '6',
-        name: '29 #Strafford APTS',
-        artist: 'Bon Iver',
-        album: '22, A Million'
-    }
-];
+Spotify.getAccessToken();
 
 const App = () => {
-    const [searchResults, setSearchResults] = useState(searchTracks);
-    const [playlistTracks, setPlaylistTracks] = useState(pTracks);
+    const [searchResults, setSearchResults] = useState([]);
+    const [playlistTracks, setPlaylistTracks] = useState([]);
     const [playlistName, setPlaylistName] = useState("Enter New Name...");
+
+    
 
     const addTrack = (track) => {        
         if (!playlistTracks.find(pTrack => pTrack.id === track.id)) {
             //Append the current state array with new track. Below method was taken from here - https://stackoverflow.com/questions/58544537/how-to-use-array-state-in-react-function-component
             //Had to use this method rather than using the .push call on the state array. Looks better and more succint too. 
             setPlaylistTracks([...playlistTracks, track]) 
-        }
+        }        
     }
 
     const removeTrack = (track) => {        
@@ -69,13 +32,22 @@ const App = () => {
     }
 
     //beginning of save playlist functionanilty
-    const savePlaylist = () => {
-        //This should create an array of track URI's
-        return playlistTracks.map(track => track.id);
+    const savePlaylist = async () => {
+        const trackUris = playlistTracks.map(track => track.uri);
+        const snapshotId = await Spotify.savePlaylist(trackUris, playlistName);
+        if (snapshotId) {
+            console.log(snapshotId);
+            setPlaylistName("Enter New Name...");
+            setPlaylistTracks([]);
+        }
+        else {
+            console.log("Playlist not saved");
+        }
     }
 
-    const search = (search) => {
-        console.log(search);
+    const search = async (search) => {        
+        let results = await Spotify.search(search);
+        setSearchResults(results);
     }
 
     return (
