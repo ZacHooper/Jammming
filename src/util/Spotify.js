@@ -1,7 +1,7 @@
 import { CLIENT_ID } from '../secrets/secrets';
 
 let accessToken;
-const redirectUri =  'http://localhost:3000/' //'http://jammming-zh.surge.shn/'
+const redirectUri =  'http://jammming-zh.surge.shn/'
 const scope = 'playlist-modify-public playlist-modify-private'
 
 const Spotify = {
