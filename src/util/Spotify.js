@@ -1,7 +1,7 @@
 import { CLIENT_ID } from '../secrets/secrets';
 
 let accessToken;
-const redirectUri = 'http://localhost:3000/'
+const redirectUri =  'http://localhost:3000/' //'http://jammming-zh.surge.shn/'
 const scope = 'playlist-modify-public playlist-modify-private'
 
 const Spotify = {
@@ -33,6 +33,7 @@ const Spotify = {
     },
 
     async search(search) {
+        const accessToken = await Spotify.getAccessToken();
         const endpoint = `https://api.spotify.com/v1/search?q=${search}&type=track&market=AU&limit=10`;
         try {
             const res = await fetch(endpoint, {headers: {Authorization: `Bearer ${accessToken}`}});

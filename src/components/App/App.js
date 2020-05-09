@@ -5,8 +5,6 @@ import SearchResults from '../SearchResults/SearchResults';
 import Playlist from '../Playlist/Playlist';
 import Spotify from '../../util/Spotify';
 
-Spotify.getAccessToken();
-
 const App = () => {
     const [searchResults, setSearchResults] = useState([]);
     const [playlistTracks, setPlaylistTracks] = useState([]);
