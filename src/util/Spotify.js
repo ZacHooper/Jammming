@@ -1,7 +1,8 @@
 import { CLIENT_ID } from '../secrets/secrets';
 
 let accessToken;
-const redirectUri =  'http://jammming-zh.surge.shn/'
+//const redirectUri = 'http://jammming-zh.surge.sh/';
+const redirectUri = 'http://localhost:3000/';
 const scope = 'playlist-modify-public playlist-modify-private'
 
 const Spotify = {
@@ -47,7 +48,8 @@ const Spotify = {
                         name: track.name,
                         artist: artistNames.join(', '),
                         album: track.album.name,
-                        uri: track.uri
+                        uri: track.uri,
+                        preview: track.preview_url
                     }
                 });
             }

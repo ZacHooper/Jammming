@@ -1,0 +1,5 @@
+<svg className="Play-icon-container" viewBox="0 0 32 33">
+    <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+        <path className="Play-icon" d="M7.983,28.247 L7.983,5.722 L25.831,16.984 L7.983,28.247 L7.983,28.247 Z M27.204,15.536 L8.394,3.279 C7.278,2.672 6,2.943 6,4.917 L6,29.052 C6,31.012 7.371,31.361 8.394,30.689 L27.204,18.433 C28.288,17.665 28.258,16.242 27.204,15.536 L27.204,15.536 Z" id="Fill-126" fill="#333333"/>
+    </g>
+</svg>
